@@ -1,0 +1,42 @@
+<h1>Deploy with Sinatra</h1>
+
+<p>First, kill your server with <code>Ctrl</code> + <code>C</code>. Open your <code>app.rb</code> and <strong>after</strong> all the <code>require</code>, add this line:</p>
+
+<pre>
+  <code class="ruby language-ruby">set :bind, '0.0.0.0'</code>
+</pre>
+
+<p>In the terminal, restart the server with <code>ruby app.rb</code>. Now the server will be able to listen to external incoming requests. To get your local IP address, you can run the following command:</p>
+
+<pre>
+  <code class="bash language-bash">ifconfig -a | perl -nle'/(\d+\.\d+\.\d+\.\d+)/ &amp;&amp; print '</code>
+</pre>
+
+<p>You should see your IP address (something like <code>192.168.x.x</code> or <code>10.0.x.x</code>). Then other people on the <strong>local network</strong> will be able to access your app with <code>http://your_ip_address:4567</code>.</p>
+
+<p>If you want to share your app with people outside the local network (someone at home for instance), we'll use <a href="https://ngrok.com/">ngrok</a>.</p>
+
+<p>On OSX, you can get it with:</p>
+
+<pre>
+  <code class="bash language-bash">brew cask install ngrok</code>
+</pre>
+
+<p>Then open a new terminal and run:</p>
+
+<pre>
+  <code class="bash language-bash">ngrok http 4567</code>
+</pre>
+
+<p>Like for <code>ruby app.rb</code>, it will run in a loop. You'll see something like this:</p>
+
+<pre>
+  <code class="bash language-bash">
+    # [...]
+    # Web Interface                 http://127.0.0.1:4040
+    # Forwarding                    http://________.ngrok.io -&gt; localhost:4567
+    # Forwarding                    https://________.ngrok.io -&gt; localhost:4567
+  </code>
+</pre>
+
+<p>Open your web browser and go to the <code>http(s)://???.ngrok.io</code> URL given by the interface. Great, you can see your app!</p>
