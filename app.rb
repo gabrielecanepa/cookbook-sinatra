@@ -9,5 +9,14 @@ configure :development do
 end
 
 get '/' do # Router
-  'Hello world!' # Controller
+  erb :index # Controller
+end
+
+get '/team' do
+  erb :'team/index'
+end
+
+get '/team/:username' do
+  @usernames = ['ssaunier', 'Papillard']
+  erb :'team/show'
 end

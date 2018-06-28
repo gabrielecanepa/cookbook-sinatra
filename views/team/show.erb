@@ -1,0 +1,20 @@
+<h1><%= params[:username] %></h1>
+
+<p>This are the passed <em>routing params</em> <strong><code><%= params %></code></strong></p>
+
+<p>In general, <code>params</code> can be filled from 3 places:</p>
+<ul>
+  <li>Routing parameters (like <strong><code>/team/:username</code></strong>)</li>
+  <li>Query string parameters (if the URL is like <strong><code>/search?keyword=lewagon)</code></strong></li>
+  <li>Body from HTTP POST queries (coming from <strong><code>&lt;form action="post"/&gt;</code></strong>)</li>
+</ul>
+
+<p>We can define instance variables in the controller (<code>app.rb</code> in this case) and pass them to the view, like <code>@usernames</code>:</p>
+
+<ul>
+  <% @usernames.each do |username| %>
+    <li><%= username %></li>
+  <% end %>
+</ul>
+
+
