@@ -16,6 +16,10 @@ get '/team' do
   erb :'team/index'
 end
 
+get '/deployment' do
+  erb :deployment
+end
+
 get '/team/:username' do
   @usernames = ['ssaunier', 'Papillard']
   erb :'team/show'
